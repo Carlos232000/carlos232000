@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>José Carlos Álvarez Piñón | Desarrollador Back-End / Full Stack</title>
+  <meta name="description"
+    content="Desarrollador Back-End / Full Stack. PHP, CodeIgniter, Python y MySQL. Portal de comercio exterior, scraping y bases de datos para punto de venta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F2F4F7;
+      --surface: #fff;
+      --ink: #101820;
+      --muted: #4A5967;
+      --accent: #0A5C7A;
+      --line: #D5DBE1;
+      --mark: #E3F0F5
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root {
+        --bg: #0F161C;
+        --surface: #17212A;
+        --ink: #E8EEF3;
+        --muted: #9FB0BE;
+        --accent: #6CC3E0;
+        --line: #2A3844;
+        --mark: #1B2E39
+      }
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 400 1.0625rem/1.65 "IBM Plex Sans", system-ui, sans-serif
+    }
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 3px
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.25rem
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      line-height: 1.1;
+      margin: 0
+    }
+
+    nav {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding: 1.25rem 0;
+      font-weight: 500
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none
+    }
+
+    nav a:hover {
+      color: var(--accent)
+    }
+
+    .hero {
+      padding: 3rem 0 2.5rem
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.03em
+    }
+
+    .hero .role {
+      font: 700 1.35rem "Bricolage Grotesque", sans-serif;
+      margin: 1rem 0 .75rem;
+      color: var(--accent)
+    }
+
+    .hero p {
+      max-width: 60ch;
+      color: var(--muted);
+      margin: 0 0 1.5rem
+    }
+
+    .facts {
+      display: grid;
+      gap: .75rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin: 2rem 0 0;
+      padding: 0;
+      list-style: none
+    }
+
+    .facts li {
+      border-left: 4px solid var(--accent);
+      padding: .25rem 0 .25rem .9rem;
+      color: var(--muted)
+    }
+
+    .facts strong {
+      display: block;
+      color: var(--ink);
+      font: 700 1.15rem "Bricolage Grotesque", sans-serif
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .7rem 1.2rem;
+      border-radius: 6px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 500;
+      text-decoration: none;
+      margin-right: .5rem
+    }
+
+    .btn.alt {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent)
+    }
+
+    section {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--line)
+    }
+
+    section>h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem
+    }
+
+    .case {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem
+    }
+
+    .case h3 {
+      font-size: 1.45rem;
+      margin-bottom: .25rem
+    }
+
+    .case .meta {
+      color: var(--muted);
+      font-size: .95rem;
+      margin: 0 0 1rem
+    }
+
+    .case dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: .6rem 1rem
+    }
+
+    .case dt {
+      font-weight: 500
+    }
+
+    .case dd {
+      margin: 0;
+      color: var(--muted)
+    }
+
+    .case svg {
+      width: 100%;
+      height: auto;
+      margin: 1rem 0 .25rem
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none
+    }
+
+    .tags li {
+      background: var(--mark);
+      color: var(--accent);
+      padding: .15rem .6rem;
+      border-radius: 4px;
+      font-size: .9rem;
+      font-weight: 500
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: .6rem 1rem;
+      margin: 0
+    }
+
+    .stack dt {
+      font-weight: 500
+    }
+
+    .stack dd {
+      margin: 0;
+      color: var(--muted)
+    }
+
+    .job {
+      margin-bottom: 1.25rem
+    }
+
+    .job h3 {
+      font-size: 1.2rem
+    }
+
+    .job p {
+      margin: .2rem 0;
+      color: var(--muted)
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line)
+    }
+
+    @media (max-width:560px) {
+
+      .case dl,
+      .stack {
+        grid-template-columns: 1fr;
+        gap: .1rem
+      }
+
+      .case dd,
+      .stack dd {
+        margin-bottom: .6rem
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav aria-label="Principal">
+      <a href="#proyectos">Proyectos</a><a href="#stack">Herramientas</a><a href="#experiencia">Experiencia</a><a
+        href="#contacto">Contacto</a>
+    </nav>
+
+    <header class="hero">
+      <h1>José Carlos Álvarez Piñón</h1>
+      <p class="role">Desarrollador Back-End / Full Stack</p>
+      <p>Construyo sistemas empresariales con PHP, CodeIgniter, Python y MySQL. Me enfoco en bases de datos que no se
+        detienen, flujos de validación claros e integraciones con servicios externos.</p>
+      <a class="btn" href="#proyectos">Ver proyectos</a>
+      <a class="btn alt" href="CV_Jose_Carlos_Alvarez_Pinon.pdf" download>Descargar CV</a>
+      <ul class="facts">
+        <li><strong>50% menos trabajo manual</strong>con el portal de importaciones</li>
+        <li><strong>50% menos tiempo de consulta</strong>con vistas y procedimientos almacenados</li>
+        <li><strong>Más de 150 usuarios</strong>en el portal de comercio exterior</li>
+      </ul>
+    </header>
+
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+
+      <article class="case">
+        <h3>Portal de comercio exterior</h3>
+        <p class="meta">Editorial Planeta Mexicana, 2023 a la fecha. Código privado de la empresa.</p>
+        <dl>
+          <dt>Problema</dt>
+          <dd>Registrar importaciones reales, de muestra y virtuales dependía de procesos manuales y distintos
+            responsables.</dd>
+          <dt>Qué hice</dt>
+          <dd>Diseñé el portal con un flujo de validación por tipo de usuario e integré los servicios web de VUCEM para
+            registrar importaciones entrantes y obtener la manifestación de valor.</dd>
+          <dt>Resultado</dt>
+          <dd>50% menos trabajo manual. Lo usan más de 100 personas para consulta y ~50 en operación, con ~10
+            importaciones al mes. La API de VUCEM sigue en desarrollo, por lo que se manejan sus errores.</dd>
+        </dl>
+        <ul class="tags">
+          <li>PHP</li>
+          <li>CodeIgniter</li>
+          <li>MySQL</li>
+          <li>JavaScript</li>
+          <li>AJAX</li>
+          <li>Servicios web</li>
+        </ul>
+      </article>
+
+      <article class="case">
+        <h3>Base de datos de un punto de venta multi-sucursal</h3>
+        <p class="meta">Florería DECSAN, 2020 a 2021. Servicio social.</p>
+        <svg viewBox="0 0 640 170" role="img"
+          aria-label="Tres equipos locales de sucursal conectados en ambos sentidos con un servidor central">
+          <defs>
+            <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7"
+              orient="auto-start-reverse">
+              <path d="M0 0L8 4L0 8z" fill="var(--accent)" />
+            </marker>
+          </defs>
+          <g fill="var(--surface)" stroke="var(--line)" stroke-width="2">
+            <rect x="10" y="10" width="190" height="42" rx="6" />
+            <rect x="10" y="64" width="190" height="42" rx="6" />
+            <rect x="10" y="118" width="190" height="42" rx="6" />
+            <rect x="430" y="40" width="200" height="90" rx="8" stroke="var(--accent)" />
+          </g>
+          <g stroke="var(--accent)" stroke-width="2.5" marker-start="url(#a)" marker-end="url(#a)">
+            <line x1="204" y1="31" x2="426" y2="75" />
+            <line x1="204" y1="85" x2="426" y2="85" />
+            <line x1="204" y1="139" x2="426" y2="95" />
+          </g>
+          <g fill="var(--ink)" font-family="IBM Plex Sans,sans-serif" font-size="15" text-anchor="middle">
+            <text x="105" y="36">Equipo local, sucursal 1</text><text x="105" y="90">Equipo local, sucursal
+              2</text><text x="105" y="144">Equipo local, sucursal 3</text>
+            <text x="530" y="82" font-weight="700">Servidor central</text><text x="530" y="102" fill="var(--muted)"
+              font-size="13">MySQL</text>
+          </g>
+        </svg>
+        <dl>
+          <dt>Problema</dt>
+          <dd>Las sucursales necesitaban seguir vendiendo sin depender de una conexión continua.</dd>
+          <dt>Qué hice</dt>
+          <dd>Diseñé la base de datos completa, con más de 10 tablas, llaves primarias, triggers y procedimientos
+            almacenados. Implementé la conexión entre equipos locales y un servidor central. Desarrollé los módulos de
+            productos, clientes, ventas e inventario.</dd>
+          <dt>Resultado</dt>
+          <dd>Sistema en uso en ~5 sucursales, con ventas sin interrupciones. Incluye un acceso móvil responsivo para
+            Android con botón de sucursales por geolocalización.</dd>
+        </dl>
+        <ul class="tags">
+          <li>MySQL</li>
+          <li>Triggers</li>
+          <li>Procedimientos almacenados</li>
+          <li>PHP</li>
+          <li>Geolocalización</li>
+        </ul>
+        <p><a href="https://github.com/TU-USUARIO/pos-database-schema">Ver esquema de ejemplo en GitHub</a></p>
+      </article>
+
+      <article class="case">
+        <h3>Scraper de precios de libros</h3>
+        <p class="meta">Automatización con Python.</p>
+        <dl>
+          <dt>Problema</dt>
+          <dd>Revisar a mano si un libro se vende por debajo del precio mínimo permitido no escala.</dd>
+          <dt>Qué hice</dt>
+          <dd>El script lee un Excel con libros, consulta su precio en Mercado Libre y lo compara con el mínimo
+            permitido. Guarda los casos en un JSON y al final genera un Excel con los enlaces de los libros por debajo
+            de ese precio.</dd>
+          <dt>Resultado</dt>
+          <dd>Procesa bloques de 100 libros cada 5 minutos, un ritmo pensado para evitar los bloqueos de Mercado Libre.
+          </dd>
+        </dl>
+        <ul class="tags">
+          <li>Python</li>
+          <li>Web scraping</li>
+          <li>Excel</li>
+          <li>JSON</li>
+        </ul>
+        <p><a href="https://github.com/TU-USUARIO/scraper-precios-libros">Ver código en GitHub</a></p>
+      </article>
+
+      <article class="case">
+        <h3>Optimización de consultas en MySQL</h3>
+        <p class="meta">Editorial Planeta Mexicana.</p>
+        <dl>
+          <dt>Qué hice</dt>
+          <dd>Reemplacé consultas pesadas por vistas y procedimientos almacenados.</dd>
+          <dt>Resultado</dt>
+          <dd>50% menos tiempo de ejecución.</dd>
+        </dl>
+        <ul class="tags">
+          <li>MySQL</li>
+          <li>Vistas</li>
+          <li>Procedimientos almacenados</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="stack">
+      <h2>Herramientas</h2>
+      <dl class="stack">
+        <dt>Lenguajes</dt>
+        <dd>PHP, Python, JavaScript, SQL</dd>
+        <dt>Frameworks</dt>
+        <dd>CodeIgniter, jQuery, AJAX</dd>
+        <dt>Bases de datos</dt>
+        <dd>MySQL: vistas, procedimientos almacenados, triggers y optimización</dd>
+        <dt>Integración</dt>
+        <dd>Servicios web (VUCEM), Postman para pruebas de envío de datos</dd>
+        <dt>Control de versiones</dt>
+        <dd>Git y GitHub</dd>
+        <dt>Automatización</dt>
+        <dd>Python para scraping y procesamiento de Excel, JSON y PDF</dd>
+      </dl>
+    </section>
+
+    <section id="experiencia">
+      <h2>Experiencia y formación</h2>
+      <div class="job">
+        <h3>Desarrollador Full Stack, Editorial Planeta Mexicana</h3>
+        <p>2023 a la fecha. Plataformas para Recursos Humanos, Importaciones y Marketing: firma digital, formatos
+          dinámicos, presupuestos, órdenes de compra y reportes.</p>
+      </div>
+      <div class="job">
+        <h3>Desarrollador Back-End, Florería DECSAN</h3>
+        <p>2020 a 2021. Punto de venta web.</p>
+      </div>
+      <div class="job">
+        <h3>Formación</h3>
+        <p>Maestría en Dirección de Tecnologías de la Información, Universidad de España y México (egresado). Ingeniería
+          en Sistemas Computacionales, TES de Huixquilucan (titulado).</p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Busco un puesto de desarrollador Back-End o Full Stack. Escríbeme.</p>
+      <a class="btn" href="mailto:jalvarezpinon@gmail.com">jalvarezpinon@gmail.com</a>
+      <a class="btn alt" href="https://www.linkedin.com/in/TU-USUARIO">LinkedIn</a>
+      <a class="btn alt" href="https://github.com/TU-USUARIO">GitHub</a>
+    </section>
+  </div>
+  <footer>
+    <div class="wrap">Naucalpan de Juárez, Estado de México.</div>
+  </footer>
+</body>
+
+</html>
